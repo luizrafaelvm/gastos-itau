@@ -69,7 +69,7 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,sans-serif
 .detail-row:last-child{border-bottom:none;}
 .detail-row-label{font-size:14px;color:rgba(235,235,245,0.6);}
 .detail-row-val{font-size:15px;font-weight:500;}
-.detail-map{margin:0 16px 16px;border-radius:16px;overflow:hidden;height:200px;background:#2c2c2e;}
+.detail-map{margin:0 16px 16px;border-radius:16px;overflow:hidden;height:200px;background:#2c2c2e;filter:invert(100%) hue-rotate(180deg) brightness(0.85) contrast(1.1);}
 .detail-card{margin:0 16px 16px;background:linear-gradient(135deg,#EC7000 0%,#c75c00 100%);border-radius:18px;padding:22px;position:relative;overflow:hidden;}
 .detail-card::before{content:'';position:absolute;top:-30px;right:-30px;width:150px;height:150px;background:rgba(255,255,255,0.08);border-radius:50%;}
 .detail-card::after{content:'';position:absolute;bottom:-40px;right:30px;width:120px;height:120px;background:rgba(255,255,255,0.05);border-radius:50%;}
@@ -183,7 +183,7 @@ function openDetail(tx){
     setTimeout(function(){
       if(!leafMap){
         leafMap=L.map('detailMap',{zoomControl:false,attributionControl:false}).setView([tx.lat,tx.lng],15);
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_matter/{z}/{x}/{y}{r}.png',{maxZoom:19,attribution:'&copy; <a href="https://carto.com/">CARTO</a>'}).addTo(leafMap);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; OpenStreetMap contributors'}).addTo(leafMap);
         var icon=L.divIcon({html:'<div style="width:26px;height:26px;background:#ff453a;border-radius:50%;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,0.6)"></div>',className:'',iconSize:[26,26],iconAnchor:[13,13]});
         leafMarker=L.marker([tx.lat,tx.lng],{icon:icon}).addTo(leafMap);
       }else{leafMap.setView([tx.lat,tx.lng],15);leafMarker.setLatLng([tx.lat,tx.lng]);}
