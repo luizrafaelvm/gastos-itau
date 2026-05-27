@@ -183,7 +183,7 @@ function openDetail(tx){
     setTimeout(function(){
       if(!leafMap){
         leafMap=L.map('detailMap',{zoomControl:false,attributionControl:false}).setView([tx.lat,tx.lng],15);
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{maxZoom:19}).addTo(leafMap);
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_matter/{z}/{x}/{y}{r}.png',{maxZoom:19,attribution:'&copy; <a href="https://carto.com/">CARTO</a>'}).addTo(leafMap);
         var icon=L.divIcon({html:'<div style="width:26px;height:26px;background:#ff453a;border-radius:50%;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,0.6)"></div>',className:'',iconSize:[26,26],iconAnchor:[13,13]});
         leafMarker=L.marker([tx.lat,tx.lng],{icon:icon}).addTo(leafMap);
       }else{leafMap.setView([tx.lat,tx.lng],15);leafMarker.setLatLng([tx.lat,tx.lng]);}
