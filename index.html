@@ -87,7 +87,7 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,sans-serif
 /* ===== PARCELA BTN ===== */
 .parcela-btn{display:block;width:calc(100% - 32px);margin:0 16px 16px;background:var(--card2);border:none;border-radius:14px;color:var(--itau);font-size:15px;font-weight:600;padding:16px;cursor:pointer;text-align:center;-webkit-tap-highlight-color:transparent;}
 .parcela-btn:active{opacity:0.7;}
-/* ===== MODAL PARCELAMENTO ===== */
+/* ===== MODAL ===== */
 .moverlay{position:fixed;inset:0;background:rgba(0,0,0,0.78);display:none;align-items:flex-end;justify-content:center;z-index:500;padding-bottom:env(safe-area-inset-bottom,0);}
 .moverlay.open{display:flex;}
 .mbox{background:#1c1c1e;border-radius:22px 22px 0 0;padding:24px 20px 36px;width:100%;max-width:480px;}
@@ -179,14 +179,13 @@ var FILE_ID='01HWH546VZAXNN7OSDQJBZRQWJLIOC4DOQ';
 var TABLE='Gastos';
 var SCOPES=['Files.ReadWrite','Sites.Read.All','User.Read'];
 var REDIRECT='https://luizrafaelvm.github.io/gastos-itau/';
-
 var msalApp=null,account=null,leafMap=null,leafMarker=null;
 var allRows=[],selMes=new Date().getMonth()+1,selAno=new Date().getFullYear(),currentTx=null;
 var MONTHS=['Janeiro','Fevereiro','Marco','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
-
 function showErr(msg){var e=document.getElementById('errBanner');e.textContent=msg;e.style.display='block';}
 function hideErr(){document.getElementById('errBanner').style.display='none';}
 function fmt(n){return n.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});}
+
 var CATS=[
   {k:['droga','farmac','raia','drogasil','ultrafarma','panvel','nissei','pacheco'],e:'\u{1F48A}',bg:'#3d1a1f',label:'Farmacia'},
   {k:['carrefour','zaffari','mercado ','atacadao','sams club','walmart','hiper','st marche','bistek','extra'],e:'\u{1F6D2}',bg:'#1a2e1f',label:'Supermercado'},
@@ -198,8 +197,7 @@ var CATS=[
   {k:['adobe','zapsign','microsoft','google','github','notion','figma','slack','zoom','openai'],e:'\u{1F4BB}',bg:'#1a1a1a',label:'Software'},
   {k:['hotel','airbnb','booking','hostel','apart'],e:'\u{1F3E8}',bg:'#1a1a2e',label:'Hospedagem'}
 ];
-function getCat(name){var n=name.toLowerCase();for(var i=0;i<CATS.length;i++){for(var j=0;j<CATS[i].k.length;j++){if(n.indexOf(CATS[i].k[j])>=0)return CATS[i];}
-/* ===== NAVEGACAO POR MES ===== */
+function getCat(name){var n=name.toLowerCase();for(var i=0;i<CATS.length;i++){for(var j=0;j<CATS[i].k.length;j++){if(n.indexOf(CATS[i].k[j])>=0)return CATS[i];}}return{e:'\u{1F4B3}',bg:'#2c2c2e',label:'Outros'};}
 function changeMonth(delta){
   selMes+=delta;
   if(selMes>12){selMes=1;selAno++;}
@@ -214,7 +212,6 @@ function updateMonthNav(){
   document.getElementById('hPeriod').textContent=MONTHS[selMes-1]+' '+selAno;
   document.getElementById('btnNextMes').disabled=isNow;
 }
-/* ===== RENDER ===== */
 function render(rows){
   allRows=rows;
   selMes=new Date().getMonth()+1;
@@ -263,7 +260,6 @@ function renderMonth(){
   html+='</div>';
   document.getElementById('txArea').innerHTML=html;
 }
-/* ===== DETAIL ===== */
 function openDetail(tx){
   currentTx=tx;
   var cat=getCat(tx.merchant);
@@ -291,8 +287,6 @@ function openDetail(tx){
   }
 }
 function closeDetail(){document.getElementById('detailPanel').classList.remove('open');}
-/* ===== LOAD DATA ===== */
-/* Converte serial numérico do Excel (ex: 46174) para DD/MM/AAAA */
 function excelSerialToDate(serial){
   var d=new Date(Math.round((serial-25569)*86400*1000));
   return String(d.getUTCDate()).padStart(2,'0')+'/'+String(d.getUTCMonth()+1).padStart(2,'0')+'/'+d.getUTCFullYear();
@@ -315,7 +309,6 @@ function loadData(){
     }).catch(function(e){showErr('Erro dados: '+e.message);});
   }).catch(function(){msalApp.acquireTokenRedirect({scopes:SCOPES,account:account,redirectUri:REDIRECT});});
 }
-/* ===== PARCELAMENTO ===== */
 function getToken(){return msalApp.acquireTokenSilent({scopes:SCOPES,account:account}).then(function(r){return r.accessToken;});}
 function addMonthsToDate(dateStr,months){
   var p=dateStr.split('/');
@@ -327,25 +320,13 @@ function addMonthsToDate(dateStr,months){
 }
 function graphPatchRow(token,rowIndex,changes,orig){
   var url='https://graph.microsoft.com/v1.0/drives/'+DRIVE_ID+'/items/'+FILE_ID+'/workbook/tables/'+TABLE+'/rows/itemAt(index='+rowIndex+')';
-  var vals=[[
-    changes.date!==undefined?changes.date:orig.date,
-    changes.time!==undefined?changes.time:orig.time,
-    changes.merchant!==undefined?changes.merchant:orig.merchant,
-    changes.amount!==undefined?changes.amount:orig.amount,
-    changes.card!==undefined?changes.card:orig.card,
-    changes.lat!==undefined?changes.lat:(orig.lat||''),
-    changes.lng!==undefined?changes.lng:(orig.lng||'')
-  ]];
-  return fetch(url,{method:'PATCH',headers:{'Authorization':'Bearer '+token,'Content-Type':'application/json'},body:JSON.stringify({values:vals})}).then(function(r){
-    if(!r.ok)return r.text().then(function(t){throw new Error('PATCH '+rowIndex+': '+r.status+' '+t);});
-  });
+  var vals=[[changes.date!==undefined?changes.date:orig.date,changes.time!==undefined?changes.time:orig.time,changes.merchant!==undefined?changes.merchant:orig.merchant,changes.amount!==undefined?changes.amount:orig.amount,changes.card!==undefined?changes.card:orig.card,changes.lat!==undefined?changes.lat:(orig.lat||''),changes.lng!==undefined?changes.lng:(orig.lng||'')]];
+  return fetch(url,{method:'PATCH',headers:{'Authorization':'Bearer '+token,'Content-Type':'application/json'},body:JSON.stringify({values:vals})}).then(function(r){if(!r.ok)return r.text().then(function(t){throw new Error('PATCH '+rowIndex+': '+r.status+' '+t);});});
 }
 function graphAddRow(token,rowData){
   var url='https://graph.microsoft.com/v1.0/drives/'+DRIVE_ID+'/items/'+FILE_ID+'/workbook/tables/'+TABLE+'/rows';
   var vals=[[rowData.date,rowData.time,rowData.merchant,rowData.amount,rowData.card,rowData.lat||'',rowData.lng||'']];
-  return fetch(url,{method:'POST',headers:{'Authorization':'Bearer '+token,'Content-Type':'application/json'},body:JSON.stringify({values:vals})}).then(function(r){
-    if(!r.ok)return r.text().then(function(t){throw new Error('POST row: '+r.status+' '+t);});
-  });
+  return fetch(url,{method:'POST',headers:{'Authorization':'Bearer '+token,'Content-Type':'application/json'},body:JSON.stringify({values:vals})}).then(function(r){if(!r.ok)return r.text().then(function(t){throw new Error('POST row: '+r.status+' '+t);});});
 }
 function abrirModal(){
   if(!currentTx)return;
@@ -374,15 +355,7 @@ async function confirmarParcelas(){
     var token=await getToken();
     await graphPatchRow(token,currentTx.rowIndex,{merchant:base+' (1/'+n+')',amount:valorFloat},currentTx);
     for(var i=2;i<=n;i++){
-      await graphAddRow(token,{
-        date:addMonthsToDate(currentTx.date,i-1),
-        time:currentTx.time,
-        merchant:base+' ('+i+'/'+n+')',
-        amount:valorFloat,
-        card:currentTx.card,
-        lat:currentTx.lat||'',
-        lng:currentTx.lng||''
-      });
+      await graphAddRow(token,{date:addMonthsToDate(currentTx.date,i-1),time:currentTx.time,merchant:base+' ('+i+'/'+n+')',amount:valorFloat,card:currentTx.card,lat:currentTx.lat||'',lng:currentTx.lng||''});
     }
     fecharModal();closeDetail();loadData();
   }catch(e){
@@ -391,7 +364,6 @@ async function confirmarParcelas(){
     btn.textContent='Confirmar';btn.disabled=false;
   }
 }
-/* ===== EVENT LISTENERS + MSAL INIT ===== */
 document.getElementById('detailBack').addEventListener('click',closeDetail);
 document.getElementById('detailBackdrop').addEventListener('click',closeDetail);
 msalApp=new msal.PublicClientApplication({auth:{clientId:CLIENT_ID,authority:'https://login.microsoftonline.com/'+TENANT_ID,redirectUri:REDIRECT,navigateToLoginRequestUrl:true},cache:{cacheLocation:'sessionStorage',storeAuthStateInCookie:true}});
