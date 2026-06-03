@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
@@ -81,27 +82,28 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,sans-serif
 
 /* ===== MONTH NAV ===== */
 .month-nav{display:flex;align-items:center;justify-content:space-between;padding:10px 20px 2px;}
-.mnbtn{background:var(--card2);border:none;color:var(--text);font-size:26px;width:34px;height:34px;border-radius:50%;cursor:pointer;-webkit-tap-highlight-color:transparent;display:flex;align-items:center;justify-content:center;line-height:1;}
+.mnbtn{background:var(–card2);border:none;color:var(–text);font-size:26px;width:34px;height:34px;border-radius:50%;cursor:pointer;-webkit-tap-highlight-color:transparent;display:flex;align-items:center;justify-content:center;line-height:1;}
 .mnbtn:disabled{opacity:0.22;pointer-events:none;}
 .mn-label{font-size:15px;font-weight:700;text-align:center;flex:1;}
 /* ===== PARCELA BTN ===== */
-.parcela-btn{display:block;width:calc(100% - 32px);margin:0 16px 16px;background:var(--card2);border:none;border-radius:14px;color:var(--itau);font-size:15px;font-weight:600;padding:16px;cursor:pointer;text-align:center;-webkit-tap-highlight-color:transparent;}
+.parcela-btn{display:block;width:calc(100% - 32px);margin:0 16px 16px;background:var(–card2);border:none;border-radius:14px;color:var(–itau);font-size:15px;font-weight:600;padding:16px;cursor:pointer;text-align:center;-webkit-tap-highlight-color:transparent;}
 .parcela-btn:active{opacity:0.7;}
 /* ===== MODAL ===== */
 .moverlay{position:fixed;inset:0;background:rgba(0,0,0,0.78);display:none;align-items:flex-end;justify-content:center;z-index:500;padding-bottom:env(safe-area-inset-bottom,0);}
 .moverlay.open{display:flex;}
 .mbox{background:#1c1c1e;border-radius:22px 22px 0 0;padding:24px 20px 36px;width:100%;max-width:480px;}
 .mtitle{font-size:18px;font-weight:700;margin-bottom:4px;}
-.msub{font-size:13px;color:var(--text3);margin-bottom:20px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-.mlabel{display:block;font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;}
-.minput{width:100%;background:var(--card2);border:none;border-radius:12px;color:var(--text);font-size:32px;font-weight:700;text-align:center;padding:14px;box-sizing:border-box;margin-bottom:12px;}
-.mpreview{background:var(--card2);border-radius:12px;padding:12px 16px;color:var(--itau);font-size:14px;text-align:center;margin-bottom:20px;line-height:1.4;}
+.msub{font-size:13px;color:var(–text3);margin-bottom:20px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.mlabel{display:block;font-size:11px;color:var(–text3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;}
+.minput{width:100%;background:var(–card2);border:none;border-radius:12px;color:var(–text);font-size:32px;font-weight:700;text-align:center;padding:14px;box-sizing:border-box;margin-bottom:12px;}
+.mpreview{background:var(–card2);border-radius:12px;padding:12px 16px;color:var(–itau);font-size:14px;text-align:center;margin-bottom:20px;line-height:1.4;}
 .mbtns{display:flex;gap:10px;}
 .mbtn{flex:1;border:none;border-radius:14px;padding:15px;font-size:16px;font-weight:600;cursor:pointer;}
-.mbtn-cancel{background:var(--card2);color:var(--text3);}
-.mbtn-ok{background:var(--itau);color:#fff;}
+.mbtn-cancel{background:var(–card2);color:var(–text3);}
+.mbtn-ok{background:var(–itau);color:#fff;}
 .mbtn:disabled{opacity:0.5;pointer-events:none;}
 </style>
+
 </head>
 <body>
 <div class="overlay" id="overlay">
@@ -187,193 +189,216 @@ function hideErr(){document.getElementById('errBanner').style.display='none';}
 function fmt(n){return n.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});}
 
 var CATS=[
-  {k:['droga','farmac','raia','drogasil','ultrafarma','panvel','nissei','pacheco'],e:'\u{1F48A}',bg:'#3d1a1f',label:'Farmacia'},
-  {k:['carrefour','zaffari','mercado ','atacadao','sams club','walmart','hiper','st marche','bistek','extra'],e:'\u{1F6D2}',bg:'#1a2e1f',label:'Supermercado'},
-  {k:['burger','mcdon','ifood','pizza','sushi','restaur','lanche','food','grill','churrasco','habib','kfc','subway','outback','madero','padaria'],e:'\u{1F354}',bg:'#2e2010',label:'Restaurante'},
-  {k:['uber','99app','taxi','cabify','buser'],e:'\u{1F697}',bg:'#0a1a2e',label:'Transporte'},
-  {k:['posto','shell','ipiranga','petrobr','combustivel'],e:'⛽',bg:'#2e280a',label:'Combustivel'},
-  {k:['netflix','spotify','prime','disney','hbo','youtube','cine','cinema','telecine','globoplay'],e:'\u{1F3AC}',bg:'#1f0a2e',label:'Streaming'},
-  {k:['amazon','shopee','mercado livre','aliexpress','americanas','magalu','magazine','submarino'],e:'\u{1F4E6}',bg:'#0a1a30',label:'Compras Online'},
-  {k:['adobe','zapsign','microsoft','google','github','notion','figma','slack','zoom','openai'],e:'\u{1F4BB}',bg:'#1a1a1a',label:'Software'},
-  {k:['hotel','airbnb','booking','hostel','apart'],e:'\u{1F3E8}',bg:'#1a1a2e',label:'Hospedagem'}
+{k:[‘droga’,‘farmac’,‘raia’,‘drogasil’,‘ultrafarma’,‘panvel’,‘nissei’,‘pacheco’],e:’\u{1F48A}’,bg:’#3d1a1f’,label:‘Farmacia’},
+{k:[‘carrefour’,‘zaffari’,‘mercado ‘,‘atacadao’,‘sams club’,‘walmart’,‘hiper’,‘st marche’,‘bistek’,‘extra’],e:’\u{1F6D2}’,bg:’#1a2e1f’,label:‘Supermercado’},
+{k:[‘burger’,‘mcdon’,‘ifood’,‘pizza’,‘sushi’,‘restaur’,‘lanche’,‘food’,‘grill’,‘churrasco’,‘habib’,‘kfc’,‘subway’,‘outback’,‘madero’,‘padaria’],e:’\u{1F354}’,bg:’#2e2010’,label:‘Restaurante’},
+{k:[‘uber’,‘99app’,‘taxi’,‘cabify’,‘buser’],e:’\u{1F697}’,bg:’#0a1a2e’,label:‘Transporte’},
+{k:[‘posto’,‘shell’,‘ipiranga’,‘petrobr’,‘combustivel’],e:‘⛽’,bg:’#2e280a’,label:‘Combustivel’},
+{k:[‘netflix’,‘spotify’,‘prime’,‘disney’,‘hbo’,‘youtube’,‘cine’,‘cinema’,‘telecine’,‘globoplay’],e:’\u{1F3AC}’,bg:’#1f0a2e’,label:‘Streaming’},
+{k:[‘amazon’,‘shopee’,‘mercado livre’,‘aliexpress’,‘americanas’,‘magalu’,‘magazine’,‘submarino’],e:’\u{1F4E6}’,bg:’#0a1a30’,label:‘Compras Online’},
+{k:[‘adobe’,‘zapsign’,‘microsoft’,‘google’,‘github’,‘notion’,‘figma’,‘slack’,‘zoom’,‘openai’],e:’\u{1F4BB}’,bg:’#1a1a1a’,label:‘Software’},
+{k:[‘hotel’,‘airbnb’,‘booking’,‘hostel’,‘apart’],e:’\u{1F3E8}’,bg:’#1a1a2e’,label:‘Hospedagem’}
 ];
-function getCat(name){var n=name.toLowerCase();for(var i=0;i<CATS.length;i++){for(var j=0;j<CATS[i].k.length;j++){if(n.indexOf(CATS[i].k[j])>=0)return CATS[i];}}return{e:'\u{1F4B3}',bg:'#2c2c2e',label:'Outros'};}
+function getCat(name){var n=name.toLowerCase();for(var i=0;i<CATS.length;i++){for(var j=0;j<CATS[i].k.length;j++){if(n.indexOf(CATS[i].k[j])>=0)return CATS[i];}}return{e:’\u{1F4B3}’,bg:’#2c2c2e’,label:‘Outros’};}
 function changeMonth(delta){
-  selMes+=delta;
-  if(selMes>12){selMes=1;selAno++;}
-  if(selMes<1){selMes=12;selAno--;}
-  renderMonth();
-  window.scrollTo({top:0,behavior:'smooth'});
+selMes+=delta;
+if(selMes>12){selMes=1;selAno++;}
+if(selMes<1){selMes=12;selAno–;}
+renderMonth();
+window.scrollTo({top:0,behavior:‘smooth’});
 }
 function updateMonthNav(){
-  var now=new Date();
-  var isNow=(selMes===(now.getMonth()+1)&&selAno===now.getFullYear());
-  document.getElementById('mnLabel').textContent=MONTHS[selMes-1]+' '+selAno;
-  document.getElementById('hPeriod').textContent=MONTHS[selMes-1]+' '+selAno;
-  document.getElementById('btnNextMes').disabled=isNow;
+var now=new Date();
+var isNow=(selMes===(now.getMonth()+1)&&selAno===now.getFullYear());
+document.getElementById(‘mnLabel’).textContent=MONTHS[selMes-1]+’ ‘+selAno;
+document.getElementById(‘hPeriod’).textContent=MONTHS[selMes-1]+’ ‘+selAno;
+document.getElementById(‘btnNextMes’).disabled=isNow;
 }
 function render(rows){
-  allRows=rows;
-  selMes=new Date().getMonth()+1;
-  selAno=new Date().getFullYear();
-  renderMonth();
+allRows=rows;
+selMes=new Date().getMonth()+1;
+selAno=new Date().getFullYear();
+renderMonth();
 }
 function renderMonth(){
-  updateMonthNav();
-  var now=new Date();
-  var mmStr=String(selMes).padStart(2,'0');
-  var todayStr=String(now.getDate()).padStart(2,'0')+'/'+String(now.getMonth()+1).padStart(2,'0');
-  var isCurrentMonth=(selMes===(now.getMonth()+1)&&selAno===now.getFullYear());
-  var month=allRows.filter(function(r){
-    var p=r.date.split('/');
-    if(p.length<2)return false;
-    if(p[1]!==mmStr)return false;
-    if(p.length>=3&&parseInt(p[2])!==selAno)return false;
-    return true;
-  });
-  var total=month.reduce(function(s,r){return s+r.amount;},0);
-  var todaySum=isCurrentMonth?month.filter(function(r){return r.date.startsWith(todayStr);}).reduce(function(s,r){return s+r.amount;},0):0;
-  var avg=month.length?total/month.length:0;
-  document.getElementById('hTotal').textContent=fmt(total);
-  document.getElementById('sToday').textContent='R$'+fmt(todaySum);
-  document.getElementById('sCount').textContent=month.length;
-  document.getElementById('sAvg').textContent='R$'+fmt(avg);
-  var pct=Math.min((total/3000)*100,100);
-  var fill=document.getElementById('pFill');
-  setTimeout(function(){fill.style.width=pct+'%';fill.style.background=total<1000?'#30d158':total<2000?'#EC7000':'#ff453a';},100);
-  var sorted=month.slice().reverse();
-  document.getElementById('txCount').textContent=sorted.length?(sorted.length+(isCurrentMonth?' este mes':' em '+MONTHS[selMes-1])):'';
-  if(!sorted.length){
-    document.getElementById('txArea').innerHTML='<div class="empty"><div class="empty-icon">&#129534;</div><div>Nenhuma transacao em '+MONTHS[selMes-1]+' '+selAno+'</div></div>';
-    return;
-  }
-  window._txs=sorted;
-  var html='<div class="txlist">';
-  for(var i=0;i<sorted.length;i++){
-    var tx=sorted[i];var cat=getCat(tx.merchant);
-    html+='<div class="txitem" onclick="openDetail(window._txs['+i+'])">';
-    html+='<div class="txicon" style="background:'+cat.bg+'">'+cat.e+'</div>';
-    html+='<div class="txinfo"><div class="txmerch">'+tx.merchant+'</div><div class="txmeta">'+tx.date+(tx.time?' &middot; '+tx.time:'')+'</div></div>';
-    html+='<div class="txright"><div class="txamt">- R$&nbsp;'+fmt(tx.amount)+'</div><div class="txcard">Itau&nbsp;****&nbsp;'+tx.card+'</div></div>';
-    html+='</div>';
-  }
-  html+='</div>';
-  document.getElementById('txArea').innerHTML=html;
+updateMonthNav();
+var now=new Date();
+var mmStr=String(selMes).padStart(2,‘0’);
+var todayStr=String(now.getDate()).padStart(2,‘0’)+’/’+String(now.getMonth()+1).padStart(2,‘0’);
+var isCurrentMonth=(selMes===(now.getMonth()+1)&&selAno===now.getFullYear());
+var month=allRows.filter(function(r){
+var p=r.date.split(’/’);
+if(p.length<2)return false;
+if(p[1]!==mmStr)return false;
+if(p.length>=3&&parseInt(p[2])!==selAno)return false;
+return true;
+});
+var total=month.reduce(function(s,r){return s+r.amount;},0);
+var todaySum=isCurrentMonth?month.filter(function(r){return r.date.startsWith(todayStr);}).reduce(function(s,r){return s+r.amount;},0):0;
+var avg=month.length?total/month.length:0;
+document.getElementById(‘hTotal’).textContent=fmt(total);
+document.getElementById(‘sToday’).textContent=‘R$’+fmt(todaySum);
+document.getElementById(‘sCount’).textContent=month.length;
+document.getElementById(‘sAvg’).textContent=‘R$’+fmt(avg);
+var pct=Math.min((total/3000)*100,100);
+var fill=document.getElementById(‘pFill’);
+setTimeout(function(){fill.style.width=pct+’%’;fill.style.background=total<1000?’#30d158’:total<2000?’#EC7000’:’#ff453a’;},100);
+var sorted=month.slice().reverse();
+document.getElementById(‘txCount’).textContent=sorted.length?(sorted.length+(isCurrentMonth?’ este mes’:’ em ‘+MONTHS[selMes-1])):’’;
+if(!sorted.length){
+document.getElementById(‘txArea’).innerHTML=’<div class="empty"><div class="empty-icon">🧾</div><div>Nenhuma transacao em ‘+MONTHS[selMes-1]+’ ‘+selAno+’</div></div>’;
+return;
+}
+window._txs=sorted;
+var html=’<div class="txlist">’;
+for(var i=0;i<sorted.length;i++){
+var tx=sorted[i];var cat=getCat(tx.merchant);
+html+=’<div class="txitem" onclick="openDetail(window._txs['+i+'])">’;
+html+=’<div class="txicon" style="background:'+cat.bg+'">’+cat.e+’</div>’;
+html+=’<div class="txinfo"><div class="txmerch">’+tx.merchant+’</div><div class="txmeta">’+tx.date+(tx.time?’ · ‘+tx.time:’’)+’</div></div>’;
+html+=’<div class="txright"><div class="txamt">- R$ ’+fmt(tx.amount)+’</div><div class="txcard">Itau **** ’+tx.card+’</div></div>’;
+html+=’</div>’;
+}
+html+=’</div>’;
+document.getElementById(‘txArea’).innerHTML=html;
 }
 function openDetail(tx){
-  currentTx=tx;
-  var cat=getCat(tx.merchant);
-  document.getElementById('detailAmount').textContent=fmt(tx.amount);
-  document.getElementById('detailMerchant').textContent=tx.merchant;
-  document.getElementById('detailDate').textContent=tx.date;
-  document.getElementById('detailTime').textContent=tx.time||'--';
-  document.getElementById('detailCardNum').textContent='Itau **** '+tx.card;
-  document.getElementById('detailCatBadge').textContent=cat.e+' '+cat.label;
-  document.getElementById('detailCardDisplay').textContent='**** **** **** '+tx.card;
-  var mapDiv=document.getElementById('detailMap');
-  var hasLoc=tx.lat&&tx.lng&&Math.abs(tx.lat)>0.001&&Math.abs(tx.lng)>0.001;
-  mapDiv.style.display=hasLoc?'block':'none';
-  document.getElementById('detailPanel').classList.add('open');
-  if(hasLoc){
-    setTimeout(function(){
-      if(!leafMap){
-        leafMap=L.map('detailMap',{zoomControl:false,attributionControl:false}).setView([tx.lat,tx.lng],15);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; OpenStreetMap contributors'}).addTo(leafMap);
-        var icon=L.divIcon({html:'<div style="width:26px;height:26px;background:#ff453a;border-radius:50%;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,0.6)"></div>',className:'',iconSize:[26,26],iconAnchor:[13,13]});
-        leafMarker=L.marker([tx.lat,tx.lng],{icon:icon}).addTo(leafMap);
-      }else{leafMap.setView([tx.lat,tx.lng],15);leafMarker.setLatLng([tx.lat,tx.lng]);}
-      leafMap.invalidateSize();
-    },420);
-  }
+currentTx=tx;
+var cat=getCat(tx.merchant);
+document.getElementById(‘detailAmount’).textContent=fmt(tx.amount);
+document.getElementById(‘detailMerchant’).textContent=tx.merchant;
+document.getElementById(‘detailDate’).textContent=tx.date;
+document.getElementById(‘detailTime’).textContent=tx.time||’–’;
+document.getElementById(‘detailCardNum’).textContent=’Itau **** ‘+tx.card;
+document.getElementById(‘detailCatBadge’).textContent=cat.e+’ ‘+cat.label;
+document.getElementById(‘detailCardDisplay’).textContent=’**** **** **** ‘+tx.card;
+var mapDiv=document.getElementById(‘detailMap’);
+var hasLoc=tx.lat&&tx.lng&&Math.abs(tx.lat)>0.001&&Math.abs(tx.lng)>0.001;
+mapDiv.style.display=hasLoc?‘block’:‘none’;
+document.getElementById(‘detailPanel’).classList.add(‘open’);
+if(hasLoc){
+setTimeout(function(){
+if(!leafMap){
+leafMap=L.map(‘detailMap’,{zoomControl:false,attributionControl:false}).setView([tx.lat,tx.lng],15);
+L.tileLayer(‘https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png’,{maxZoom:19,attribution:’© OpenStreetMap contributors’}).addTo(leafMap);
+var icon=L.divIcon({html:’<div style="width:26px;height:26px;background:#ff453a;border-radius:50%;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,0.6)"></div>’,className:’’,iconSize:[26,26],iconAnchor:[13,13]});
+leafMarker=L.marker([tx.lat,tx.lng],{icon:icon}).addTo(leafMap);
+}else{leafMap.setView([tx.lat,tx.lng],15);leafMarker.setLatLng([tx.lat,tx.lng]);}
+leafMap.invalidateSize();
+},420);
 }
-function closeDetail(){document.getElementById('detailPanel').classList.remove('open');}
+}
+function closeDetail(){document.getElementById(‘detailPanel’).classList.remove(‘open’);}
 function excelSerialToDate(serial){
-  var d=new Date(Math.round((serial-25569)*86400*1000));
-  return String(d.getUTCDate()).padStart(2,'0')+'/'+String(d.getUTCMonth()+1).padStart(2,'0')+'/'+d.getUTCFullYear();
+var d=new Date(Math.round((serial-25569)*86400*1000));
+return String(d.getUTCDate()).padStart(2,‘0’)+’/’+String(d.getUTCMonth()+1).padStart(2,‘0’)+’/’+d.getUTCFullYear();
 }
 function parseExcelDate(raw){
-  if(typeof raw==='number'&&raw>0)return excelSerialToDate(raw);
-  return String(raw||'').trim();
+if(typeof raw===‘number’&&raw>0)return excelSerialToDate(raw);
+return String(raw||’’).trim();
 }
 function loadData(){
-  hideErr();
-  msalApp.acquireTokenSilent({scopes:SCOPES,account:account}).then(function(resp){
-    var url='https://graph.microsoft.com/v1.0/drives/'+DRIVE_ID+'/items/'+FILE_ID+'/workbook/tables/'+TABLE+'/rows';
-    fetch(url,{headers:{Authorization:'Bearer '+resp.accessToken}}).then(function(res){return res.json();}).then(function(data){
-      var rows=data.value.map(function(r){
-        var v=r.values[0];
-        return{rowIndex:r.index,date:parseExcelDate(v[0]),time:String(v[1]||'').trim(),merchant:String(v[2]||'').trim(),amount:parseFloat(String(v[3]||'0').replace(',','.')),card:String(v[4]||'').trim(),lat:parseFloat(v[5])||0,lng:parseFloat(v[6])||0};
-      }).filter(function(r){return r.merchant&&r.amount>0;});
-      render(rows);
-      document.getElementById('lastUpdate').textContent='Atualizado '+new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
-    }).catch(function(e){showErr('Erro dados: '+e.message);});
-  }).catch(function(){msalApp.acquireTokenRedirect({scopes:SCOPES,account:account,redirectUri:REDIRECT});});
+hideErr();
+msalApp.acquireTokenSilent({scopes:SCOPES,account:account}).then(function(resp){
+var url=‘https://graph.microsoft.com/v1.0/drives/’+DRIVE_ID+’/items/’+FILE_ID+’/workbook/tables/’+TABLE+’/rows’;
+fetch(url,{headers:{Authorization:‘Bearer ‘+resp.accessToken}}).then(function(res){return res.json();}).then(function(data){
+var rows=data.value.map(function(r){
+var v=r.values[0];
+return{rowIndex:r.index,date:parseExcelDate(v[0]),time:String(v[1]||’’).trim(),merchant:String(v[2]||’’).trim(),amount:parseFloat(String(v[3]||‘0’).replace(’,’,’.’)),card:String(v[4]||’’).trim(),lat:parseFloat(v[5])||0,lng:parseFloat(v[6])||0};
+}).filter(function(r){return r.merchant&&r.amount>0;});
+render(rows);
+document.getElementById(‘lastUpdate’).textContent=‘Atualizado ‘+new Date().toLocaleTimeString(‘pt-BR’,{hour:‘2-digit’,minute:‘2-digit’});
+}).catch(function(e){showErr(‘Erro dados: ‘+e.message);});
+}).catch(function(){msalApp.acquireTokenRedirect({scopes:SCOPES,account:account,redirectUri:REDIRECT});});
 }
 function getToken(){return msalApp.acquireTokenSilent({scopes:SCOPES,account:account}).then(function(r){return r.accessToken;});}
 function addMonthsToDate(dateStr,months){
-  var p=dateStr.split('/');
-  var day=parseInt(p[0]);
-  var mon=parseInt(p[1])+months;
-  var year=p.length>=3?parseInt(p[2]):new Date().getFullYear();
-  while(mon>12){mon-=12;year++;}
-  return p.length>=3?String(day).padStart(2,'0')+'/'+String(mon).padStart(2,'0')+'/'+year:String(day).padStart(2,'0')+'/'+String(mon).padStart(2,'0');
+var p=dateStr.split(’/’);
+var day=parseInt(p[0]);
+var mon=parseInt(p[1])+months;
+var year=p.length>=3?parseInt(p[2]):new Date().getFullYear();
+while(mon>12){mon-=12;year++;}
+return p.length>=3?String(day).padStart(2,‘0’)+’/’+String(mon).padStart(2,‘0’)+’/’+year:String(day).padStart(2,‘0’)+’/’+String(mon).padStart(2,‘0’);
 }
 function graphPatchRow(token,rowIndex,changes,orig){
-  var url='https://graph.microsoft.com/v1.0/drives/'+DRIVE_ID+'/items/'+FILE_ID+'/workbook/tables/'+TABLE+'/rows/itemAt(index='+rowIndex+')';
-  var vals=[[changes.date!==undefined?changes.date:orig.date,changes.time!==undefined?changes.time:orig.time,changes.merchant!==undefined?changes.merchant:orig.merchant,changes.amount!==undefined?changes.amount:orig.amount,changes.card!==undefined?changes.card:orig.card,changes.lat!==undefined?changes.lat:(orig.lat||''),changes.lng!==undefined?changes.lng:(orig.lng||'')]];
-  return fetch(url,{method:'PATCH',headers:{'Authorization':'Bearer '+token,'Content-Type':'application/json'},body:JSON.stringify({values:vals})}).then(function(r){if(!r.ok)return r.text().then(function(t){throw new Error('PATCH '+rowIndex+': '+r.status+' '+t);});});
+var url=‘https://graph.microsoft.com/v1.0/drives/’+DRIVE_ID+’/items/’+FILE_ID+’/workbook/tables/’+TABLE+’/rows/itemAt(index=’+rowIndex+’)’;
+var vals=[[changes.date!==undefined?changes.date:orig.date,changes.time!==undefined?changes.time:orig.time,changes.merchant!==undefined?changes.merchant:orig.merchant,changes.amount!==undefined?changes.amount:orig.amount,changes.card!==undefined?changes.card:orig.card,changes.lat!==undefined?changes.lat:(orig.lat||’’),changes.lng!==undefined?changes.lng:(orig.lng||’’),changes.obs!==undefined?changes.obs:(orig.obs||’’)]];
+return fetch(url,{method:‘PATCH’,headers:{‘Authorization’:‘Bearer ‘+token,‘Content-Type’:‘application/json’},body:JSON.stringify({values:vals})}).then(function(r){if(!r.ok)return r.text().then(function(t){throw new Error(‘PATCH ‘+rowIndex+’: ‘+r.status+’ ‘+t);});});
 }
 function graphAddRow(token,rowData){
-  var url='https://graph.microsoft.com/v1.0/drives/'+DRIVE_ID+'/items/'+FILE_ID+'/workbook/tables/'+TABLE+'/rows';
-  var vals=[[rowData.date,rowData.time,rowData.merchant,rowData.amount,rowData.card,rowData.lat||'',rowData.lng||'']];
-  return fetch(url,{method:'POST',headers:{'Authorization':'Bearer '+token,'Content-Type':'application/json'},body:JSON.stringify({values:vals})}).then(function(r){if(!r.ok)return r.text().then(function(t){throw new Error('POST row: '+r.status+' '+t);});});
+var url=‘https://graph.microsoft.com/v1.0/drives/’+DRIVE_ID+’/items/’+FILE_ID+’/workbook/tables/’+TABLE+’/rows’;
+var vals=[[rowData.date,rowData.time,rowData.merchant,rowData.amount,rowData.card,rowData.lat||’’,rowData.lng||’’,rowData.obs||’’]];
+return fetch(url,{method:‘POST’,headers:{‘Authorization’:‘Bearer ‘+token,‘Content-Type’:‘application/json’},body:JSON.stringify({values:vals})}).then(function(r){if(!r.ok)return r.text().then(function(t){throw new Error(‘POST row: ‘+r.status+’ ‘+t);});});
 }
 function abrirModal(){
-  if(!currentTx)return;
-  document.getElementById('mMerch').textContent=currentTx.merchant+' — R$ '+fmt(currentTx.amount);
-  document.getElementById('mInput').value=2;
-  atualizarPreview();
-  document.getElementById('moverlay').classList.add('open');
+if(!currentTx)return;
+document.getElementById(‘mMerch’).textContent=currentTx.merchant+’ — R$ ‘+fmt(currentTx.amount);
+document.getElementById(‘mInput’).value=2;
+atualizarPreview();
+document.getElementById(‘moverlay’).classList.add(‘open’);
 }
-function fecharModal(){document.getElementById('moverlay').classList.remove('open');}
+function fecharModal(){document.getElementById(‘moverlay’).classList.remove(‘open’);}
+var obsTimer=null;
+function obsChanged(){
+document.getElementById(‘obsStatus’).textContent=‘Digitando…’;
+clearTimeout(obsTimer);
+obsTimer=setTimeout(saveObs,1800);
+}
+async function saveObs(){
+if(!currentTx)return;
+var obs=document.getElementById(‘obsInput’).value;
+var statusEl=document.getElementById(‘obsStatus’);
+try{
+var token=await getToken();
+await graphPatchRow(token,currentTx.rowIndex,{obs:obs},currentTx);
+currentTx.obs=obs;
+var row=allRows.find(function(r){return r.rowIndex===currentTx.rowIndex;});
+if(row)row.obs=obs;
+statusEl.textContent=‘Salvo ✓’;
+setTimeout(function(){statusEl.textContent=’’;},2500);
+}catch(e){
+statusEl.textContent=‘Erro — adicione coluna Obs no Excel primeiro’;
+console.error(e);
+}
+}
 function atualizarPreview(){
-  if(!currentTx)return;
-  var n=parseInt(document.getElementById('mInput').value)||2;
-  if(n<2)n=2;if(n>48)n=48;
-  var val=fmt(Math.round((currentTx.amount/n)*100)/100);
-  document.getElementById('mPreview').textContent=n+'x de R$ '+val+(n>1?' — 1 agora + '+(n-1)+' nos meses seguintes':'');
+if(!currentTx)return;
+var n=parseInt(document.getElementById(‘mInput’).value)||2;
+if(n<2)n=2;if(n>48)n=48;
+var val=fmt(Math.round((currentTx.amount/n)*100)/100);
+document.getElementById(‘mPreview’).textContent=n+‘x de R$ ‘+val+(n>1?’ — 1 agora + ‘+(n-1)+’ nos meses seguintes’:’’);
 }
 async function confirmarParcelas(){
-  var n=parseInt(document.getElementById('mInput').value);
-  if(!n||n<2||n>48){alert('Informe entre 2 e 48 parcelas.');return;}
-  if(!currentTx)return;
-  var btn=document.getElementById('mBtnOk');
-  btn.textContent='Salvando...';btn.disabled=true;
-  try{
-    var valorFloat=Math.round((currentTx.amount/n)*100)/100;
-    var base=currentTx.merchant.replace(/ \(\d+\/\d+\)$/,'');
-    var token=await getToken();
-    await graphPatchRow(token,currentTx.rowIndex,{merchant:base+' (1/'+n+')',amount:valorFloat},currentTx);
-    for(var i=2;i<=n;i++){
-      await graphAddRow(token,{date:addMonthsToDate(currentTx.date,i-1),time:currentTx.time,merchant:base+' ('+i+'/'+n+')',amount:valorFloat,card:currentTx.card,lat:currentTx.lat||'',lng:currentTx.lng||''});
-    }
-    fecharModal();closeDetail();loadData();
-  }catch(e){
-    alert('Erro ao parcelar: '+e.message);console.error(e);
-  }finally{
-    btn.textContent='Confirmar';btn.disabled=false;
-  }
+var n=parseInt(document.getElementById(‘mInput’).value);
+if(!n||n<2||n>48){alert(‘Informe entre 2 e 48 parcelas.’);return;}
+if(!currentTx)return;
+var btn=document.getElementById(‘mBtnOk’);
+btn.textContent=‘Salvando…’;btn.disabled=true;
+try{
+var valorFloat=Math.round((currentTx.amount/n)*100)/100;
+var base=currentTx.merchant.replace(/ (\d+/\d+)$/,’’);
+var token=await getToken();
+await graphPatchRow(token,currentTx.rowIndex,{merchant:base+’ (1/’+n+’)’,amount:valorFloat},currentTx);
+for(var i=2;i<=n;i++){
+await graphAddRow(token,{date:addMonthsToDate(currentTx.date,i-1),time:currentTx.time,merchant:base+’ (’+i+’/’+n+’)’,amount:valorFloat,card:currentTx.card,lat:currentTx.lat||’’,lng:currentTx.lng||’’});
 }
-document.getElementById('detailBack').addEventListener('click',closeDetail);
-document.getElementById('detailBackdrop').addEventListener('click',closeDetail);
-msalApp=new msal.PublicClientApplication({auth:{clientId:CLIENT_ID,authority:'https://login.microsoftonline.com/'+TENANT_ID,redirectUri:REDIRECT,navigateToLoginRequestUrl:true},cache:{cacheLocation:'sessionStorage',storeAuthStateInCookie:true}});
+fecharModal();closeDetail();loadData();
+}catch(e){
+alert(’Erro ao parcelar: ’+e.message);console.error(e);
+}finally{
+btn.textContent=‘Confirmar’;btn.disabled=false;
+}
+}
+document.getElementById(‘detailBack’).addEventListener(‘click’,closeDetail);
+document.getElementById(‘detailBackdrop’).addEventListener(‘click’,closeDetail);
+msalApp=new msal.PublicClientApplication({auth:{clientId:CLIENT_ID,authority:‘https://login.microsoftonline.com/’+TENANT_ID,redirectUri:REDIRECT,navigateToLoginRequestUrl:true},cache:{cacheLocation:‘sessionStorage’,storeAuthStateInCookie:true}});
 msalApp.initialize().then(function(){return msalApp.handleRedirectPromise();}).then(function(resp){
-  if(resp&&resp.account){account=resp.account;document.getElementById('overlay').style.display='none';loadData();return;}
-  var accounts=msalApp.getAllAccounts();
-  if(accounts.length>0){account=accounts[0];document.getElementById('overlay').style.display='none';loadData();return;}
-  document.getElementById('loginBtn').addEventListener('click',function(){document.getElementById('loginNote').textContent='Redirecionando para Microsoft...';document.getElementById('loginBtn').disabled=true;msalApp.loginRedirect({scopes:SCOPES,redirectUri:REDIRECT});});
-  document.getElementById('rBtn').addEventListener('click',function(){if(account)loadData();});
-}).catch(function(e){showErr('Erro init: '+e.message);});
+if(resp&&resp.account){account=resp.account;document.getElementById(‘overlay’).style.display=‘none’;loadData();return;}
+var accounts=msalApp.getAllAccounts();
+if(accounts.length>0){account=accounts[0];document.getElementById(‘overlay’).style.display=‘none’;loadData();return;}
+document.getElementById(‘loginBtn’).addEventListener(‘click’,function(){document.getElementById(‘loginNote’).textContent=‘Redirecionando para Microsoft…’;document.getElementById(‘loginBtn’).disabled=true;msalApp.loginRedirect({scopes:SCOPES,redirectUri:REDIRECT});});
+document.getElementById(‘rBtn’).addEventListener(‘click’,function(){if(account)loadData();});
+}).catch(function(e){showErr(’Erro init: ’+e.message);});
 
 </script>
 <div class="moverlay" id="moverlay" onclick="if(event.target===this)fecharModal()">
