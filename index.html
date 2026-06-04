@@ -358,7 +358,7 @@ function graphAddRow(token,rowData){
 function abrirModal(){
   if(!currentTx)return;
   if(/\s\(\d+\/\d+\)$/.test(currentTx.merchant)){
-    alert('Este lançamento já foi parcelado. Para evitar divergências, não é possível parcelar novamente.');
+    alert('Você já ajustou o registro desse lançamento para ser parcelado. Veja a quantidade de parcelas (e.g., [num]/[total]) no próprio lançamento.');
     return;
   }
   document.getElementById('mMerch').textContent=currentTx.merchant+' — R$ '+fmt(currentTx.amount);
